@@ -36,14 +36,15 @@ export class PostsPage {
     })
   }
   Browser(url:string){
-    browserTab.isAvailable()
-    .then(isAvailable=>{
-      if (isAvailable){
-        browserTab.openUrl('https://twist.moe/a/'+url)
-      }else{
-        alert('errpr');
-      }
-    })
+    this.browserTab.openUrl('https://twist.moe/a/'+url)
+    // browserTab.isAvailable()
+    // .then(isAvailable=>{
+    //   if (isAvailable){
+    //     browserTab.openUrl('https://twist.moe/a/'+url)
+    //   }else{
+    //     alert('errpr');
+    //   }
+    // })
   }
 
 }
