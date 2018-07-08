@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { PostsPage } from '../posts/posts';
+import { ApisProvider } from '../../providers/apis/apis';
 
 @Component({
   selector: 'page-home',
@@ -10,7 +11,7 @@ import { PostsPage } from '../posts/posts';
 export class HomePage {
  public items:any;
  public logo:string;
-  constructor(public navCtrl: NavController,public http:HttpClient) {
+  constructor(public navCtrl: NavController,public http:HttpClient, public apis:ApisProvider) {
     this.getItem();
     this.http.get('https://twist.moe/feed/anime?format=json')
     .subscribe(logo=>{
@@ -18,12 +19,7 @@ export class HomePage {
     })
   }
   getItem(){
-    this.http.get(' https://twist.moe/api/anime',{
-      headers:{
-        'x-access-token': '1rj2vRtegS8Y60B3w3qNZm5T2Q0TN2NR'
-      }
-    })
-    .subscribe((res)=>{
+    this.apis.ListAnime().subscribe((res)=>{
       this.items = res;
     })
   }

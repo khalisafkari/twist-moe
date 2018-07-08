@@ -1,3 +1,19 @@
 page-posts {
-
+    .head-item{
+        background: radial-gradient(ellipse at center, hsla(94,60%,73%,1) 0%,hsla(95,77%,44%,1) 50%,hsla(94,60%,73%,1) 100%);
+    }
+    ion-item{
+        ion-thumbnail{
+            height: 150px;
+            width: 150px; 
+            .poster{
+                height: 150px;
+                width: 150px;
+                border-radius: 10px;
+            }
+        }
+    }
+    .kistu-content{
+        white-space: pre;
+    }
 }

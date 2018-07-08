@@ -13,8 +13,18 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-list>
+<ion-content >
+
+    <ion-item class="head-item">
+        <ion-thumbnail item-start>
+        <img class="poster" [src]="poster" height="150px" width="150px">
+        </ion-thumbnail>
+        <h2>{{title}}</h2>
+        <p class="kistu-content">{{kistuio}}</p>
+        <button ion-button clear item-end>View</button>
+    </ion-item>
+
+  <ion-list padding>
     <ion-item *ngFor="let item of items" (click)="Browser(slug +'/'+ item.number)">
       {{title}} Episode {{item.number}}
     </ion-item>

@@ -7,8 +7,12 @@ import { NavController } from 'ionic-angular';
 })
 export class AboutPage {
 
+  public myInput:string='';
   constructor(public navCtrl: NavController) {
 
+  }
+  onInput(e){
+    console.log(e);
   }
 
 }

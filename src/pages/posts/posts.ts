@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
-import { BrowserTab } from '@ionic-native/browser-tab';
+import { Url } from 'url';
+declare var cordova;
 
 /**
  * Generated class for the PostsPage page.
@@ -16,9 +17,18 @@ import { BrowserTab } from '@ionic-native/browser-tab';
 })
 export class PostsPage {
   public title:string;
-  public items:any;
+  public items:Array<object>=[];
   public slug:string;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient, public browserTab:BrowserTab) {
+  public kistuio:Array<Object> = [];
+  public poster:Url;
+  constructor
+  (
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public http:HttpClient
+  )
+  {
+
   }
 
   ionViewDidLoad() {
@@ -34,17 +44,18 @@ export class PostsPage {
       this.title = res['title'];
       this.items = res['episodes'];
     })
+    this.Kitsu(this.slug);
   }
   Browser(url:string){
-    this.browserTab.openUrl('https://twist.moe/a/'+url)
-    // browserTab.isAvailable()
-    // .then(isAvailable=>{
-    //   if (isAvailable){
-    //     browserTab.openUrl('https://twist.moe/a/'+url)
-    //   }else{
-    //     alert('errpr');
-    //   }
-    // })
+    cordova.plugins.browsertab.openUrl("https://twist.moe/a/"+url); 
+  }
+  Kitsu(title:string){
+    this.http.get('https://kitsu.io/api/edge/anime?filter[text]='+title)
+    .subscribe(res=>{
+      this.kistuio = res['data'][0].attributes.synopsis;
+      this.poster = res['data'][0].attributes.posterImage.original;
+      console.log(res.data["0"].attributes);
+    })
   }
 
 }

@@ -12,7 +12,7 @@ import { PostsPage } from '../pages/posts/posts';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserTab } from '@ionic-native/browser-tab';
+import { ApisProvider } from '../providers/apis/apis';
 
 @NgModule({
   declarations: [
@@ -40,8 +40,8 @@ import { BrowserTab } from '@ionic-native/browser-tab';
   providers: [
     StatusBar,
     SplashScreen,
-    BrowserTab,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ApisProvider
   ]
 })
 export class AppModule {}
