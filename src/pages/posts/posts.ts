@@ -54,7 +54,7 @@ export class PostsPage {
     .subscribe(res=>{
       this.kistuio = res['data'][0].attributes.synopsis;
       this.poster = res['data'][0].attributes.posterImage.original;
-      console.log(res.data["0"].attributes);
+
     })
   }
 
